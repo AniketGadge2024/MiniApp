@@ -1,10 +1,11 @@
 import React from 'react'
-import Exercise from './Component/Exercise/Exercise'
+import Power from './Component/Power'
+
 
 const App = () => {
   return (
     <div>
-      <Exercise></Exercise>
+      <Power></Power>
     </div>
   )
 }
