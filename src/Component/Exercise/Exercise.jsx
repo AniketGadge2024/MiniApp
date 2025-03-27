@@ -7,25 +7,27 @@ const Exercise = () => {
 
   useEffect(() => {
     if ("geolocation" in navigator) {
-      const watchId = navigator.geolocation.watchPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          const newLocation = { latitude, longitude };
+      const intervalId = setInterval(() => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            const newLocation = { latitude, longitude };
 
-          setLocation(newLocation);
+            setLocation(newLocation);
 
-          if (prevLocation) {
-            const newDistance = getDistance(prevLocation, newLocation);
-            setDistance((prev) => prev + newDistance);
-          }
+            if (prevLocation) {
+              const newDistance = getDistance(prevLocation, newLocation);
+              setDistance((prev) => prev + newDistance);
+            }
 
-          setPrevLocation(newLocation);
-        },
-        (error) => console.error("Error fetching location:", error),
-        { enableHighAccuracy: true, maximumAge: 10000, timeout: 5000 }
-      );
+            setPrevLocation(newLocation);
+          },
+          (error) => console.error("Error fetching location:", error),
+          { enableHighAccuracy: true }
+        );
+      }, 1000); // Update location every 1 second
 
-      return () => navigator.geolocation.clearWatch(watchId);
+      return () => clearInterval(intervalId);
     } else {
       console.error("Geolocation is not supported by this browser.");
     }
@@ -50,12 +52,12 @@ const Exercise = () => {
 
   return (
     <div style={{ padding: '20px' }}>
-      <h2>Live Location Tracking</h2>
+      <h2>Live Location Tracking (Updates Every 1 Second)</h2>
       {location ? (
         <div>
           <p><strong>Latitude:</strong> {location.latitude}</p>
           <p><strong>Longitude:</strong> {location.longitude}</p>
-          <p><strong>Distance Traveled:</strong> {distance.toFixed(2)} km</p>
+          <p><strong>Distance Traveled:</strong> {distance.toFixed(4)} km</p>
         </div>
       ) : (
         <p>Fetching location...</p>
