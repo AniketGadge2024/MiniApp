@@ -1,0 +1,89 @@
+/* Global styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  h2 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Card container for a clean layout */
+  .card {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: 20px;
+    overflow: hidden;
+    text-align: left;
+  }
+  
+  /* List styling */
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  li strong {
+    color: #333;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    body {
+      padding: 10px;
+    }
+  
+    .card {
+      padding: 20px;
+      margin: 10px;
+      max-width: 90%;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    li {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    body {
+      padding: 5px;
+    }
+  
+    .card {
+      padding: 15px;
+      margin: 10px;
+      max-width: 95%;
+    }
+  
+    h2 {
+      font-size: 18px;
+    }
+  
+    li {
+      font-size: 12px;
+    }
+  }
+  

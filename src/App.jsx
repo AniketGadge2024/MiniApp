@@ -1,16 +1,10 @@
 import React from 'react'
-import Power from './Component/Power'
-
-import Game from './Component/Game'
-import Crash from './Component/Crash'
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Device from './Components/Device/Device';
 const App = () => {
   return (
     <div>
-      {/* <Power></Power>
-      <Game></Game> */}
-      <Crash></Crash>
+      <Device></Device>
     </div>
   )
 }
