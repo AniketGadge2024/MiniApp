@@ -1,0 +1,220 @@
+/* Layout & Container */
+.personal-modal-content {
+  padding: 16px 16px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 100%;
+  color: #f4f4f5;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.modal-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.drag-handle {
+  width: 36px;
+  height: 4px;
+  background: #3f3f46;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.close-modal-btn {
+  background: #27272a;
+  border: 1px solid #3f3f46;
+  color: #a1a1aa;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-modal-btn:hover {
+  color: #ffffff;
+  background: #3f3f46;
+}
+
+/* Header Text */
+.modal-header-info {
+  margin-bottom: 20px;
+}
+
+.modal-header-info h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.02em;
+}
+
+.modal-header-info p {
+  font-size: 0.82rem;
+  color: #71717a;
+  margin: 0;
+}
+
+/* Modern Segmented Control (Tab Bar) */
+.segmented-control {
+  display: flex;
+  background: #18181b;
+  border: 1px solid #27272a;
+  padding: 4px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+  gap: 4px;
+}
+
+.segment-btn {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: transparent;
+  color: #71717a;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.segment-btn.active {
+  background: #27272a;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Form Layout */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: hidden;
+  padding-bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-row .form-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  color: #a1a1aa;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+}
+
+.label-hint {
+  color: #52525b;
+  font-size: 0.72rem;
+  font-weight: 400;
+}
+
+.form-group input,
+.form-group select {
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #ffffff;
+  font-size: 16px; /* 16px minimum prevents forced browser auto-zoom on Samsung/Chrome input focus */
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: #52525b;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+}
+
+/* Calendar Icon Invert for Dark Theme */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.8);
+  cursor: pointer;
+}
+
+/* Submit Action Button */
+.submit-btn {
+  margin-top: 6px;
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+.submit-btn:disabled {
+  background: #27272a;
+  color: #52525b;
+  cursor: not-allowed;
+}
+
+/* Status Notifications */
+.status-message {
+  padding: 11px 14px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.status-message.success {
+  background: rgba(16, 185, 129, 0.12);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.status-message.error {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}

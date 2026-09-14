@@ -1,10 +1,12 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Device from './Components/Device/Device';
+import Personal from './Components/Personal';
+import Dash from './Components/Dash';
+
 const App = () => {
   return (
     <div>
-      <Device></Device>
+  <Dash></Dash>
     </div>
   )
 }
