@@ -9,7 +9,7 @@ const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztOKhcpPFrSAiy2J74i
 const formatDate = (dateString) => {
   if (!dateString) return 'No Date';
   const date = new Date(dateString);
-  if (isNaN(date.getTime())) return dateString; // Return original if invalid date string
+  if (isNaN(date.getTime())) return dateString;
 
   return date.toLocaleDateString('en-GB', {
     day: '2-digit',
@@ -81,13 +81,13 @@ const Dash = () => {
   return (
     <div className="mobile-shell">
       <div className="mobile-app">
-        {/* Header Bar */}
+        
         <header className="app-header">
           <div className="user-profile">
             <div className="avatar">A</div>
             <div>
-              <span className="greeting">Welcome back</span>
-              <h2 className="user-name">Financial Hub</h2>
+              {/* <span className="greeting">Aniket Gadge</span>
+              <h2 className="user-name">Welcome back</h2> */}
             </div>
           </div>
 
@@ -113,7 +113,7 @@ const Dash = () => {
               className={`tab-item ${activeTab === 'rent' ? 'active' : ''}`}
               onClick={() => { setActiveTab('rent'); setExpandedCategory(null); }}
             >
-              Rent & Room
+              Rent
             </button>
           </div>
         </div>
@@ -130,8 +130,8 @@ const Dash = () => {
             <>
               <div className="hero-balance-card">
                 <div className="hero-top">
-                  <span className="hero-label">Total Balance</span>
-                  <span className="status-badge">Live Sync</span>
+                  <span className="hero-label">Total Money</span>
+                  <span className="status-badge">Live Sync on</span>
                 </div>
                 <div className="hero-amount-wrapper">
                   <span className="currency-symbol">₹</span>
@@ -201,8 +201,8 @@ const Dash = () => {
               {expandedCategory && (
                 <div className="expandable-panel">
                   <div className="panel-header">
-                    <h4>{expandedCategory} Breakdown</h4>
-                    <span className="count-pill">{activeFilteredList.length} items</span>
+                    <h4>{expandedCategory} </h4>
+                    <span className="count-pill">{activeFilteredList.length}</span>
                   </div>
 
                   <div className="panel-list">
@@ -213,7 +213,7 @@ const Dash = () => {
                             <span className="item-title">{tx.personalName || 'Unlabeled Expense'}</span>
                             <span className="item-date">{formatDate(tx.personalDate)}</span>
                           </div>
-                          <span className="item-price">- ₹{Number(tx.personalAmount || 0).toLocaleString()}</span>
+                          <span className="item-price"> ₹{Number(tx.personalAmount || 0).toLocaleString()}</span>
                         </div>
                       ))
                     ) : (
@@ -228,8 +228,8 @@ const Dash = () => {
             <>
               <div className="hero-balance-card rent-accent">
                 <div className="hero-top">
-                  <span className="hero-label">Total R-Money</span>
-                  <span className="status-badge">Utilities</span>
+                  <span className="hero-label">Money I Have</span>
+                  <span className="status-badge">Cash + Online</span>
                 </div>
                 <div className="hero-amount-wrapper">
                   <span className="currency-symbol">₹</span>
@@ -297,7 +297,9 @@ const Dash = () => {
                     <div key={idx} className="activity-item">
                       <div className="activity-main">
                         <span className="activity-title">
-                          {tx.rMoneyUseName ? `Used by ${tx.rMoneyUseName}` : 'Room Shared Entry'}
+                          {rentFilter === 'USED' 
+                            ? (tx.rMoneyUseName ? `Used by ${tx.rMoneyUseName}` : 'Used Entry') 
+                            : ''}
                         </span>
                         <span className="activity-date">{formatDate(tx.rDate)}</span>
                       </div>
@@ -308,7 +310,7 @@ const Dash = () => {
                         {(rentFilter === 'ALL' || rentFilter === 'ELEC') && Number(tx.electricity) > 0 && (
                           <span className="mini-badge elec">Elec ₹{tx.electricity}</span>
                         )}
-                        {(rentFilter === 'ALL' || rentFilter === 'USED') && Number(tx.rMoneyUseAmount) > 0 && (
+                        {rentFilter === 'USED' && Number(tx.rMoneyUseAmount) > 0 && (
                           <span className="mini-badge used">Used ₹{tx.rMoneyUseAmount}</span>
                         )}
                       </div>
