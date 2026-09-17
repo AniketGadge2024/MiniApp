@@ -392,7 +392,7 @@ const Dash = () => {
                       <div className="activity-main">
                         <span className="activity-title">
                           {rentFilter === 'USED' 
-                            ? (tx.rMoneyUseName ? `Used by ${tx.rMoneyUseName}` : 'Used Entry') 
+                            ? (tx.rMoneyUseName ? ` ${tx.rMoneyUseName}` : 'Used Entry') 
                             : ''}
                         </span>
                         <span className="activity-date">{formatDate(tx.rDate)}</span>
