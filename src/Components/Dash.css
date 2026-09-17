@@ -43,7 +43,7 @@ body {
   display: flex;
   flex-direction: column;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
-  position: relative; /* Constrains absolute modal overlay inside app frame */
+  position: relative;
 }
 
 /* Header */
@@ -73,15 +73,51 @@ body {
   color: var(--text-primary);
 }
 
-.greeting {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  display: block;
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.user-name {
-  font-size: 1.05rem;
-  font-weight: 600;
+.refresh-action-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.refresh-action-btn:hover:not(:disabled) {
+  background: var(--bg-card-hover);
+  border-color: #3f3f46;
+}
+
+.refresh-action-btn:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.refresh-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.refresh-icon {
+  display: inline-block;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+.refresh-icon.spinning {
+  animation: spin 0.8s linear infinite;
+  color: var(--accent-emerald);
 }
 
 .add-action-btn {
@@ -251,6 +287,10 @@ body {
   transition: all 0.2s ease;
 }
 
+.cat-card.hero-cat {
+  grid-column: span 2;
+}
+
 .cat-card:hover {
   background: var(--bg-card-hover);
 }
@@ -258,10 +298,6 @@ body {
 .cat-card.expanded {
   border-color: var(--accent-emerald);
   background: var(--bg-card-hover);
-}
-
-.cat-card.readonly {
-  cursor: default;
 }
 
 .cat-card-top {
@@ -296,7 +332,6 @@ body {
   color: var(--text-primary);
 }
 
-/* Card Selection Highlight Filter */
 .cat-card.active-filter {
   border: 1.5px solid var(--accent-emerald);
   background: var(--accent-emerald-soft);
@@ -385,7 +420,6 @@ body {
   margin-bottom: 12px;
 }
 
-/* Dropdown Selector */
 .filter-select {
   background: var(--bg-card);
   color: var(--text-muted);
@@ -481,6 +515,11 @@ body {
   animation: pulse 1.2s infinite ease-in-out;
 }
 
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 @keyframes pulse {
   0% { transform: scale(0.8); opacity: 0.5; }
   50% { transform: scale(1.1); opacity: 1; }
@@ -503,8 +542,6 @@ body {
   z-index: 100;
   border-radius: 40px;
   overflow-y: auto;
-  
-  /* Top to bottom slide transition */
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
@@ -517,7 +554,7 @@ body {
   pointer-events: auto;
 }
 
-/* Real Samsung A35 / Mobile Viewport Optimization */
+/* Responsive Viewport Optimization */
 @media screen and (max-width: 480px) {
   .mobile-shell {
     padding: 0;
@@ -536,16 +573,8 @@ body {
   .modal-overlay {
     border-radius: 0 !important;
   }
+
+  .header-actions {
+    gap: 8px;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-

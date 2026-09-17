@@ -26,7 +26,7 @@ const Dash = () => {
   const [activeTab, setActiveTab] = useState('personal');
   const [expandedCategory, setExpandedCategory] = useState(null);
   const [rentFilter, setRentFilter] = useState('ALL');
-  const [selectedMonth, setSelectedMonth] = useState('ALL'); // Added month filter state
+  const [selectedMonth, setSelectedMonth] = useState('ALL');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fetchData = async () => {
@@ -53,7 +53,6 @@ const Dash = () => {
     setExpandedCategory(expandedCategory === categoryName ? null : categoryName);
   };
 
-  // Helper to extract available YYYY-MM options dynamically from transactions
   const availableMonths = Array.from(
     new Set(
       personalTransactions
@@ -61,21 +60,18 @@ const Dash = () => {
           if (!tx.personalDate) return null;
           const d = new Date(tx.personalDate);
           if (isNaN(d.getTime())) return null;
-          // Returns string in format "YYYY-MM"
           return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
         })
         .filter(Boolean)
     )
-  ).sort((a, b) => b.localeCompare(a)); // Sort newest first
+  ).sort((a, b) => b.localeCompare(a));
 
-  // Filter transactions by Category and Month
   const getFilteredTransactions = (categoryName) => {
     if (!categoryName) return [];
     
     const target = categoryName.toLowerCase().trim();
 
     return personalTransactions.filter(tx => {
-      // Month check
       if (selectedMonth !== 'ALL' && tx.personalDate) {
         const d = new Date(tx.personalDate);
         if (!isNaN(d.getTime())) {
@@ -84,7 +80,6 @@ const Dash = () => {
         }
       }
 
-      // Category check
       const rawCat = tx.personalCategory || tx.category || "";
       const cat = rawCat.toString().trim().toLowerCase();
 
@@ -98,7 +93,6 @@ const Dash = () => {
     });
   };
 
-  // Calculate dynamics totals when month filter is applied
   const getCategoryTotal = (categoryName, defaultMetricValue) => {
     if (selectedMonth === 'ALL') {
       return Number(defaultMetricValue || 0);
@@ -136,13 +130,24 @@ const Dash = () => {
             <div className="avatar">A</div>
           </div>
 
-          <button 
-            className="add-action-btn" 
-            onClick={() => setIsModalOpen(true)}
-            aria-label="Add New Entry"
-          >
-            +
-          </button>
+          <div className="header-actions">
+            <button 
+              className="refresh-action-btn" 
+              onClick={fetchData} 
+              disabled={loading}
+              aria-label="Refresh Data"
+            >
+              <span className={`refresh-icon ${loading ? 'spinning' : ''}`}>↻</span>
+            </button>
+
+            <button 
+              className="add-action-btn" 
+              onClick={() => setIsModalOpen(true)}
+              aria-label="Add New Entry"
+            >
+              +
+            </button>
+          </div>
         </header>
 
         <div className="tab-wrapper">
@@ -191,7 +196,6 @@ const Dash = () => {
                   <span className="section-subtitle">Tap to inspect</span>
                 </div>
                 
-                {/* Month Dropdown Filter */}
                 <select 
                   className="filter-select"
                   value={selectedMonth}
@@ -212,7 +216,7 @@ const Dash = () => {
 
               <div className="category-grid">
                 <div 
-                  className={`cat-card ${expandedCategory === 'Junk' ? 'expanded' : ''}`}
+                  className={`cat-card hero-cat ${expandedCategory === 'Junk' ? 'expanded' : ''}`}
                   onClick={() => handleCategoryClick('Junk')}
                 >
                   <div className="cat-card-top">

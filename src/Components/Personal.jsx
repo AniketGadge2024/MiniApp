@@ -337,7 +337,7 @@ const Personal = ({ onClose, refreshData, onNavigate }) => {
                             cursor: 'pointer'
                           }}
                         >
-                          ±
+                          😄
                         </button>
                       </div>
                     </div>
