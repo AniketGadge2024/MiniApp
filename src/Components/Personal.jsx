@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Personal.css';
 import Add from './Upay/Add';
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztOKhcpPFrSAiy2J74i5EqBrRJagmz7wc9tWHbexDab218vbFrhdme1MM3lJLtUVxZwA/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbysKlwoVanoLEXH5ltlPiVP8lg36jxoqkYrjpEh4-PLrVCAE4K7T8pClsZr9JhCP809gw/exec";
 
 // Helper function to return today's date formatted as YYYY-MM-DD
 const getTodayDate = () => new Date().toISOString().split('T')[0];
@@ -43,6 +43,22 @@ const Personal = ({ onClose, refreshData, onNavigate }) => {
     const { name, value } = e.target;
     const updatedRows = [...personalRows];
     updatedRows[index][name] = value;
+    setPersonalRows(updatedRows);
+  };
+
+  // Toggle Negative Amount Handler
+  const toggleNegativeAmount = (index) => {
+    const updatedRows = [...personalRows];
+    const currentVal = updatedRows[index].PersonalAmount;
+
+    if (!currentVal) return;
+
+    if (currentVal.startsWith('-')) {
+      updatedRows[index].PersonalAmount = currentVal.substring(1);
+    } else {
+      updatedRows[index].PersonalAmount = '-' + currentVal;
+    }
+
     setPersonalRows(updatedRows);
   };
 
@@ -140,10 +156,9 @@ const Personal = ({ onClose, refreshData, onNavigate }) => {
 
       <div className="modal-header-info">
         <h2>New Entry</h2>
-        
       </div>
 
-      {/* Modern Segmented Tab Switcher */}
+      {/* Segmented Tab Switcher */}
       <div className="segmented-control">
         <button
           type="button"
@@ -168,14 +183,14 @@ const Personal = ({ onClose, refreshData, onNavigate }) => {
         </button>
       </div>
 
-      {/* Smooth Notification Banner */}
+      {/* Status Message */}
       {message.text && (
         <div className={`status-message ${message.type}`}>
           {message.text}
         </div>
       )}
 
-      {/* Dynamic Tab Content rendering */}
+      {/* Form Content */}
       {activeTab === 'coaching' ? (
         <div className="tab-pane-fade">
           <Add onNavigate={onNavigate} />
@@ -288,22 +303,43 @@ const Personal = ({ onClose, refreshData, onNavigate }) => {
                         onChange={(e) => handlePersonalRowChange(index, e)}
                         required
                       >
-                        <option value="Junk">Food</option>
+                        <option value="Junk">Food / Junk</option>
                         <option value="Shopping">Shopping</option>
                         <option value="Money Personal">Personal</option>
+                        <option value="Other Total">Other</option>
+                        <option value="Card Spend">Card Spend</option>
                       </select>
                     </div>
 
                     <div className="form-group">
                       <label>Amount (₹)</label>
-                      <input
-                        type="number"
-                        name="PersonalAmount"
-                        placeholder="0.00"
-                        value={row.PersonalAmount}
-                        onChange={(e) => handlePersonalRowChange(index, e)}
-                        required
-                      />
+                      <div className="amount-input-wrapper" style={{ display: 'flex', gap: '8px' }}>
+                        <input
+                          type="number"
+                          name="PersonalAmount"
+                          placeholder="0.00"
+                          value={row.PersonalAmount}
+                          onChange={(e) => handlePersonalRowChange(index, e)}
+                          required
+                          style={{ flex: 1 }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => toggleNegativeAmount(index)}
+                          title="Toggle positive / negative amount"
+                          style={{
+                            padding: '0 12px',
+                            backgroundColor: row.PersonalAmount.toString().startsWith('-') ? '#ef4444' : '#374151',
+                            color: '#ffffff',
+                            border: 'none',
+                            borderRadius: '8px',
+                            fontWeight: 'bold',
+                            cursor: 'pointer'
+                          }}
+                        >
+                          ±
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
