@@ -1,0 +1,168 @@
+/* Swapped to Inter for Samsung One UI match */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* --- RENT PAGE SPECIFIC STYLES (Optimized for Samsung A35 / One UI) --- */
+
+.rent-hero-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px 0;
+}
+
+.rent-main-amount {
+  font-size: 28px;
+  font-weight: 800;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SamsungOne', 'One UI Sans', sans-serif;
+  letter-spacing: -0.6px;
+  color: #ffffff;
+  margin-top: 2px;
+}
+
+.rent-main-amount small {
+  font-size: 14px;
+  font-weight: 600;
+  color: #b5c9b7;
+}
+
+.rent-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.rent-metric-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 10px 8px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  transition: background 0.2s ease, transform 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rent-metric-card:active {
+  background: rgba(255, 255, 255, 0.16);
+  transform: scale(0.98);
+}
+
+.rent-metric-title {
+  font-size: 9px;
+  color: #b5c9b7;
+  font-weight: 600;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SamsungOne', 'One UI Sans', sans-serif;
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+
+.rent-metric-value {
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SamsungOne', 'One UI Sans', sans-serif;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+}
+
+.rent-metric-value small {
+  font-size: 9px;
+  font-weight: 500;
+  color: #b5c9b7;
+}
+
+/* --- Rent Transaction Clean & Minimal Card Row --- */
+.rent-transaction-card {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  align-items: center;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  transition: background 0.2s ease, transform 0.1s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rent-transaction-card:active {
+  background: rgba(255, 255, 255, 0.55);
+  transform: scale(0.99);
+}
+
+.rent-tx-date {
+  font-size: 9px;
+  font-weight: 700;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SamsungOne', 'One UI Sans', sans-serif;
+  color: var(--text-main);
+  text-align: left;
+}
+
+.rent-tx-title {
+  font-size: 11px;
+  font-weight: 500;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SamsungOne', 'One UI Sans', sans-serif;
+  color: var(--text-muted);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 4px;
+}
+
+.rent-tx-amount-credit {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SamsungOne', 'One UI Sans', sans-serif;
+  color: var(--emerald-primary);
+  text-align: right;
+  letter-spacing: -0.2px;
+}
+
+.rent-tx-amount-debit {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'SamsungOne', 'One UI Sans', sans-serif;
+  color: #c04a4a;
+  text-align: right;
+  letter-spacing: -0.2px;
+}
+
+.footer-action-wrapper {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+/* --- EXPANDED FULL VIEW MODE --- */
+.expanded-rent-view-active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.expanded-section-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0 !important;
+  max-height: 100%;
+}
+
+.expanded-transactions-stack {
+  flex: 1;
+  overflow-y: auto !important;
+  max-height: none !important;
+  padding-bottom: 20px;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+}
